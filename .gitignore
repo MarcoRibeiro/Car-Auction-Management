@@ -1,0 +1,70 @@
+# Build results
+bin/
+obj/
+out/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code
+.vscode/
+.history/
+
+# Rider
+.idea/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Entity Framework Migrations
+Migrations/
+
+# Logs
+*.log
+logs/
+Log/
+
+# Configuration files
+appsettings.*.json
+secrets.json
+
+# Coverage reports
+TestResults/
+coverage/
+*.coverage
+*.coveragexml
+*.lcov
+
+# Dump files
+*.pidb
+*.mdb
+*.opendb
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose.override.yml
+.env
+*.vs
+.vs/
+
+# Temporary files
+~$*
+*.tmp
+*.bak
+*.swp
+*.swo

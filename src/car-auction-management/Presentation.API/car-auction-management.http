@@ -1,0 +1,6 @@
+@car_auction_management_HostAddress = http://localhost:5065
+
+GET {{car_auction_management_HostAddress}}/v1/cars
+Accept: application/json
+
+###
