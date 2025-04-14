@@ -1,6 +1,6 @@
 ﻿namespace Domain.Entities;
 
-public class Hatchback : Car
+public class Hatchback : Vehicle
 {
     public int NumberOfDoors { get; set; }
 }

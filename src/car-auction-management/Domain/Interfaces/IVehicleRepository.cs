@@ -1,4 +1,4 @@
-﻿namespace Domain.Interfaces.Repositories;
+﻿namespace Domain.Interfaces;
 
 using Domain.Entities;
 
@@ -8,9 +8,9 @@ public interface IVehicleRepository
 
     Task<Vehicle> GetVehicleByIdAsync(Guid id);
 
-    Task CreateVehicleAsync(Vehicle car);
+    Task<Guid> CreateVehicleAsync(Vehicle car);
 
     Task UpdateCarAsync(Vehicle car);
 
-    Task DeleteCarAsync(int id);
+    Task DeleteCarAsync(Guid id);
 }

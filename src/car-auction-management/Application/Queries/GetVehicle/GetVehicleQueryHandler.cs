@@ -1,7 +1,7 @@
 ﻿namespace Application.Queries.GetVehicle;
 
 using Domain.Entities;
-using Domain.Interfaces.Repositories;
+using Domain.Interfaces;
 
 using MediatR;
 
@@ -10,6 +10,6 @@ public record GetVehicleQueryHandler(IVehicleRepository vehicleRepository) :
 {
     public async Task<Vehicle> Handle(GetVehicleQuery request, CancellationToken cancellationToken)
     {
-        return await this.vehicleRepository.GetVehicleByIdAsync(request.Id);
+        return await vehicleRepository.GetVehicleByIdAsync(request.Id);
     }
 }

@@ -5,9 +5,4 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Factories\" />
-    <Folder Include="Interfaces\Gateways\" />
-  </ItemGroup>
-
 </Project>

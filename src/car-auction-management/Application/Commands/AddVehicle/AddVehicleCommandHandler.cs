@@ -1,14 +1,24 @@
 ﻿namespace Application.Commands.AddVehicle;
 
-using Domain.Interfaces.Repositories;
+using Domain.Interfaces;
 
 using MediatR;
 
-public class AddVehicleCommandHandler(IVehicleRepository vehicleRepository) 
+public class AddVehicleCommandHandler(IVehicleRepository vehicleRepository, IVehicleFactory vehicleFactory) 
     : IRequestHandler<AddVehicleCommand, Guid>
 {
-    public Task<Guid> Handle(AddVehicleCommand request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(AddVehicleCommand request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var vehicle = vehicleFactory.CreateVehicle(
+            request.Type,
+            request.Model,
+            request.Manufacturer,
+            request.Year,
+            request.Startingid,
+            request.NumberOfDoors,
+            request.LoadCapacity,
+            request.NumberOfSeats);
+
+        return await vehicleRepository.CreateVehicleAsync(vehicle);
     }
 }

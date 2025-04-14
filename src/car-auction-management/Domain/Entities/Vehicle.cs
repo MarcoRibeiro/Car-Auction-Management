@@ -13,7 +13,7 @@ public abstract class Vehicle
 
     public int Year { get; set; }
 
-    public double Startingid { get; set; }
+    public double StartingBid { get; set; }
 
     public VehicleType Type { get; set; }
 }
