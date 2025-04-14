@@ -3,11 +3,11 @@
 using System;
 using Domain.Enums;
 
-public abstract class Car
+public abstract class Vehicle
 {
     public Guid Id { get; set; }
 
-    public string Make { get; set; }
+    public string Model { get; set; }
 
     public string Manufacturer { get; set; }
 
@@ -15,5 +15,5 @@ public abstract class Car
 
     public double Startingid { get; set; }
 
-    public CarType Type { get; set; }
+    public VehicleType Type { get; set; }
 }

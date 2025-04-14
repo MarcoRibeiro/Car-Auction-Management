@@ -1,6 +1,6 @@
 ﻿namespace Domain.Enums;
 
-public enum CarType
+public enum VehicleType
 {
     Hatchback,
     Sudan,
