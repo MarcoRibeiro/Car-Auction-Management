@@ -4,6 +4,11 @@ using Domain.Enums;
 
 public class Auction : Entity
 {
+    public Auction() 
+    { 
+        this.Id = Guid.NewGuid();
+    }
+
     public Guid VehicleId { get; set; }
 
     public DateTime StartDate { get; set; }

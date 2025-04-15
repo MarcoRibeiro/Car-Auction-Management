@@ -1,10 +1,16 @@
 @car_auction_management_HostAddress = http://localhost:5065
+@vehicle_id = 55503503-cba2-49b7-8b2e-d1fb05b83584
 
-GET {{car_auction_management_HostAddress}}/v1/vehicles/55503503-cba2-49b7-8b2e-d1fb05b83584
+
+GET {{car_auction_management_HostAddress}}/v1/vehicles
 Accept: application/json
 
 ###
 
+GET {{car_auction_management_HostAddress}}/v1/vehicles/@{vehicle_id}
+Accept: application/json
+
+###
 POST {{car_auction_management_HostAddress}}/v1/vehicles
 Content-Type: application/json
 {
