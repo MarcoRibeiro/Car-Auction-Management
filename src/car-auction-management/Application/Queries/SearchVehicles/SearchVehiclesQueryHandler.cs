@@ -1,6 +1,6 @@
 ﻿namespace Application.Queries.SearchVehicles;
 
-using System.Linq.Expressions;
+using Application.Extensions;
 
 using Domain.Entities;
 using Domain.Interfaces;

@@ -2,7 +2,7 @@
 
 using MediatR;
 
-public record StopAuctionCommand : IRequest
+public record PlaceBidCommand : IRequest
 {
     public Guid VehicleId { get; init; }
     

@@ -6,9 +6,9 @@ using Domain.Interfaces;
 using MediatR;
 
 public record SearchVehiclesQueryHandler(IVehicleRepository vehicleRepository) :
-    IRequestHandler<SearchVehiclesQuery, Vehicle>
+    IRequestHandler<GetVehicleQuery, Vehicle>
 {
-    public async Task<Vehicle> Handle(SearchVehiclesQuery request, CancellationToken cancellationToken)
+    public async Task<Vehicle> Handle(GetVehicleQuery request, CancellationToken cancellationToken)
     {
         return await vehicleRepository.GetByIdAsync(request.Id);
     }

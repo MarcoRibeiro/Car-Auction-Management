@@ -15,10 +15,10 @@ public class AddVehicleCommandValidator : AbstractValidator<AddVehicleCommand>
         RuleFor(x => x.Startingid).NotEmpty().GreaterThan(0);
         RuleFor(x => x.NumberOfDoors)
             .NotEmpty().InclusiveBetween(3, 5).When(x => x.Type == VehicleType.Sudan || x.Type == VehicleType.Hatchback);
-        RuleFor(x => x.NumberOfDoors).Empty().When(x => x.Type != VehicleType.Sudan || x.Type != VehicleType.Hatchback);
+        RuleFor(x => x.NumberOfDoors).Empty().When(x => x.Type != VehicleType.Sudan && x.Type != VehicleType.Hatchback);
         RuleFor(x => x.NumberOfSeats).NotEmpty().InclusiveBetween(3, 7).When(x => x.Type == VehicleType.SUV);
-        RuleFor(x => x.NumberOfDoors).Empty().When(x => x.Type != VehicleType.SUV);
-        RuleFor(x => x.NumberOfDoors).NotEmpty().GreaterThan(0).When(x => x.Type != VehicleType.Truck);
-        RuleFor(x => x.NumberOfDoors).Empty().When(x => x.Type != VehicleType.Truck);
+        RuleFor(x => x.NumberOfSeats).Empty().When(x => x.Type != VehicleType.SUV);
+        RuleFor(x => x.LoadCapacity).NotEmpty().GreaterThan(0).When(x => x.Type == VehicleType.Truck);
+        RuleFor(x => x.LoadCapacity).Empty().When(x => x.Type != VehicleType.Truck);
     }
 }

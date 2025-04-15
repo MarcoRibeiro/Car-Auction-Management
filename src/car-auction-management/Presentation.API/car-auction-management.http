@@ -2,22 +2,22 @@
 @vehicle_id = 55503503-cba2-49b7-8b2e-d1fb05b83584
 
 
-GET {{car_auction_management_HostAddress}}/v1/vehicles
+GET {{car_auction_management_HostAddress}}/v1/vehicles?manufacturer=BYD
 Accept: application/json
 
 ###
 
-GET {{car_auction_management_HostAddress}}/v1/vehicles/@{vehicle_id}
+GET {{car_auction_management_HostAddress}}/v1/vehicles/{{vehicle_id}}
 Accept: application/json
 
 ###
 POST {{car_auction_management_HostAddress}}/v1/vehicles
 Content-Type: application/json
 {
-    "type": "Sudan",
-    "model": "Seal",
-    "manufacturer": "BYD",
-    "numberOfDoors": 5,
+    "type": "Truck",
+    "model": "Test",
+    "manufacturer": "Tesla",
+    "loadCapacity": 5,
     "StartingPrice": 32000,
     "year": 2024
 }
