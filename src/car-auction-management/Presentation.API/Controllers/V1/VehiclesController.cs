@@ -17,7 +17,7 @@ using Presentation.API.Controllers.V1.Extensions;
 public class VehiclesController(ISender sender, ILogger<VehiclesController> logger)
     : BaseController(logger)
 {
-    [HttpGet]
+    [HttpGet("{id}")]
     public async Task<Vehicle> GetAsync([FromRoute] Guid id)
     {
         return await sender.Send(new GetVehicleQuery { Id = id });
@@ -32,7 +32,10 @@ public class VehiclesController(ISender sender, ILogger<VehiclesController> logg
             Manufacturer = request.Manufacturer,
             Year = request.Year,
             Startingid = request.StartingPrice,
-            Type = request.Type.ToDomain()
+            Type = request.Type.ToDomain(),
+            LoadCapacity = request.LoadCapacity,
+            NumberOfDoors = request.NumberOfDoors,
+            NumberOfSeats = request.NumberOfSeats
         };
         return await sender.Send(command);
     }

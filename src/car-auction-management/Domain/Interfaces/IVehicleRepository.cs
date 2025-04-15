@@ -8,9 +8,9 @@ public interface IVehicleRepository
 
     Task<Vehicle> GetVehicleByIdAsync(Guid id);
 
-    Task<Guid> CreateVehicleAsync(Vehicle car);
+    Task<Guid> CreateVehicleAsync(Vehicle vehicle);
 
-    Task UpdateCarAsync(Vehicle car);
+    Task UpdateCarAsync(Vehicle vehicle);
 
     Task DeleteCarAsync(Guid id);
 }

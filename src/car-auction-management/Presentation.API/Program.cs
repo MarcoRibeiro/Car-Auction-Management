@@ -1,36 +1,54 @@
 
-namespace car_auction_management
+namespace Presentation.API;
+
+using System.Text.Json.Serialization;
+using System.Text.Json;
+
+using Application.Commands.AddVehicle;
+
+using Domain.Factories;
+using Domain.Interfaces;
+
+using Infrastructure;
+
+public class Program
 {
-    public class Program
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
+        var builder = WebApplication.CreateBuilder(args);
+
+        // Add services to the container.
+
+        builder.Services.AddControllers().AddJsonOptions(options =>
         {
-            var builder = WebApplication.CreateBuilder(args);
+            options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase, allowIntegerValues: false));
+        });
+        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
 
-            // Add services to the container.
+        builder.Services.AddSingleton<IVehicleFactory, VehicleFactory>();
+        builder.Services.AddSingleton<IVehicleRepository, VehicleRepository>();
+        builder.Services.AddMediatR(cfg => 
+        {
+            cfg.RegisterServicesFromAssemblyContaining<AddVehicleCommand>();
+        });
 
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+        var app = builder.Build();
 
-            var app = builder.Build();
-
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
-
-            app.UseHttpsRedirection();
-
-            app.UseAuthorization();
-
-
-            app.MapControllers();
-
-            app.Run();
+        // Configure the HTTP request pipeline.
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
         }
+
+        app.UseHttpsRedirection();
+
+        app.UseAuthorization();
+
+        app.MapControllers();
+
+        app.Run();
     }
 }
