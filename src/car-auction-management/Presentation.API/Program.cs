@@ -11,6 +11,9 @@ using Domain.Interfaces;
 
 using Infrastructure;
 using Domain.Services;
+using MediatR;
+using Presentation.API.PipelineBehavior;
+using FluentValidation;
 
 public class Program
 {
@@ -36,6 +39,9 @@ public class Program
         {
             cfg.RegisterServicesFromAssemblyContaining<AddVehicleCommand>();
         });
+
+        builder.Services.AddValidatorsFromAssembly(typeof(AddVehicleCommand).Assembly);
+        builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
 
         var app = builder.Build();
 
