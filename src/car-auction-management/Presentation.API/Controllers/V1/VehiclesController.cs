@@ -20,7 +20,7 @@ public class VehiclesController(ISender sender, ILogger<VehiclesController> logg
     [HttpGet("{id}")]
     public async Task<Vehicle> GetAsync([FromRoute] Guid id)
     {
-        return await sender.Send(new GetVehicleQuery { Id = id });
+        return await sender.Send(new SearchVehiclesQuery { Id = id });
     }
 
     [HttpPost]

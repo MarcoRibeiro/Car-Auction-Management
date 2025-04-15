@@ -2,7 +2,7 @@
 
 public interface IAuctionService
 {
-    Task StartAuctionAsync(Guid vehicleId);
+    Task<Guid> StartAuctionAsync(Guid vehicleId);
 
     Task StopAuctionAsync(Guid vehicleId);
 

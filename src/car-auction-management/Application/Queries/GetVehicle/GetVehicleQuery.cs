@@ -4,7 +4,7 @@ using Domain.Entities;
 
 using MediatR;
 
-public record GetVehicleQuery : IRequest<Vehicle>
+public record SearchVehiclesQuery : IRequest<Vehicle>
 {
     public Guid Id { get; init; }
 }

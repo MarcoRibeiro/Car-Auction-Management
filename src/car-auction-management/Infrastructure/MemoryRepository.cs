@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 using Domain.Entities;
@@ -23,11 +24,11 @@ public class MemoryRepository<T>
         return Task.FromResult(_data.TryRemove(id, out _));
     }
 
-    public Task<IEnumerable<T>> GetAllAsync(Func<T, bool> predicate = null)
+    public Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> predicate = null)
     {
         if(predicate != null)
         {
-            return Task.FromResult(_data.Values.Where(predicate));
+            return Task.FromResult(_data.Values.Where(predicate.Compile()));
         }
 
         return Task.FromResult((IEnumerable<T>)_data.Values);

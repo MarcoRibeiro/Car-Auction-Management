@@ -16,7 +16,7 @@ public class AuctionService(IVehicleRepository vehicleRepository, IAuctionReposi
     private readonly string valueBellowStartingBidMessage = "Bib amount is bellow the starting bid amount";
     private readonly string valueBellowCurrentHighestBidMessage = "Bid amount must be greater than the current highest bid";
 
-    public async Task StartAuctionAsync(Guid vehicleId)
+    public async Task<Guid> StartAuctionAsync(Guid vehicleId)
     {
         var vehicle = await vehicleRepository.GetByIdAsync(vehicleId);
         if (vehicle == null)
@@ -38,7 +38,7 @@ public class AuctionService(IVehicleRepository vehicleRepository, IAuctionReposi
             StartingBid = vehicle.StartingBid,
         };
 
-        await auctionRepository.CreateAsync(auction);
+        return await auctionRepository.CreateAsync(auction);
     }
 
     public async Task PlaceBidAsync(Guid vehicleId, double value)
