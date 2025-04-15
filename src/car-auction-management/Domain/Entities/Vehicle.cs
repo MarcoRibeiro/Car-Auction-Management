@@ -1,12 +1,9 @@
 ﻿namespace Domain.Entities;
 
-using System;
 using Domain.Enums;
 
-public abstract class Vehicle
+public abstract class Vehicle : Entity
 {
-    public Guid Id { get; set; }
-
     public string Model { get; set; }
 
     public string Manufacturer { get; set; }

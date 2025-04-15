@@ -10,6 +10,6 @@ public record GetVehicleQueryHandler(IVehicleRepository vehicleRepository) :
 {
     public async Task<Vehicle> Handle(GetVehicleQuery request, CancellationToken cancellationToken)
     {
-        return await vehicleRepository.GetVehicleByIdAsync(request.Id);
+        return await vehicleRepository.GetByIdAsync(request.Id);
     }
 }

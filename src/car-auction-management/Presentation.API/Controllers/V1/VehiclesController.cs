@@ -10,7 +10,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 using Presentation.API.Controllers.V1.DTOs;
-using Presentation.API.Controllers.V1.Extensions;
+using Presentation.API.Extensions;
 
 [ApiController]
 [Route(DefaultRoute)]

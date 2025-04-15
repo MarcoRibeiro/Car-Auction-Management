@@ -1,11 +1,10 @@
 ﻿namespace Domain.Interfaces;
 
-using Domain.Entities;
-
 public interface IAuctionService
 {
-    Task ActiveAuctionAsync(Guid vehicleId);
+    Task StartAuctionAsync(Guid vehicleId);
 
     Task StopAuctionAsync(Guid vehicleId);
 
+    Task PlaceBidAsync(Guid vehicleId, double value);
 }

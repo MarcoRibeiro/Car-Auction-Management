@@ -9,7 +9,7 @@ public class AddVehicleCommandHandler(IVehicleRepository vehicleRepository, IVeh
 {
     public async Task<Guid> Handle(AddVehicleCommand request, CancellationToken cancellationToken)
     {
-        var vehicle = vehicleFactory.CreateVehicle(
+        var vehicle = vehicleFactory.Create(
             request.Type,
             request.Model,
             request.Manufacturer,
@@ -19,6 +19,6 @@ public class AddVehicleCommandHandler(IVehicleRepository vehicleRepository, IVeh
             request.LoadCapacity,
             request.NumberOfSeats);
 
-        return await vehicleRepository.CreateVehicleAsync(vehicle);
+        return await vehicleRepository.CreateAsync(vehicle);
     }
 }

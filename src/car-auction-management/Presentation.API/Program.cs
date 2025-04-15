@@ -10,6 +10,7 @@ using Domain.Factories;
 using Domain.Interfaces;
 
 using Infrastructure;
+using Domain.Services;
 
 public class Program
 {
@@ -29,6 +30,8 @@ public class Program
 
         builder.Services.AddSingleton<IVehicleFactory, VehicleFactory>();
         builder.Services.AddSingleton<IVehicleRepository, VehicleRepository>();
+        builder.Services.AddSingleton<IAuctionRepository, AuctionRepository>();
+        builder.Services.AddSingleton<IAuctionService, AuctionService>();
         builder.Services.AddMediatR(cfg => 
         {
             cfg.RegisterServicesFromAssemblyContaining<AddVehicleCommand>();

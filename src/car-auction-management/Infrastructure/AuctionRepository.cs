@@ -3,6 +3,6 @@
 using Domain.Entities;
 using Domain.Interfaces;
 
-public class VehicleRepository : MemoryRepository<Vehicle>, IVehicleRepository
+public class AuctionRepository : MemoryRepository<Auction>, IAuctionRepository
 {
 }

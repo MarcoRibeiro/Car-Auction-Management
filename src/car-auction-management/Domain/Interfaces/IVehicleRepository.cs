@@ -4,13 +4,13 @@ using Domain.Entities;
 
 public interface IVehicleRepository
 {
-    Task<IEnumerable<Vehicle>> GetAllCarsAsync();
+    Task<IEnumerable<Vehicle>> GetAllAsync(Func<Vehicle, bool> predicate = null);
 
-    Task<Vehicle> GetVehicleByIdAsync(Guid id);
+    Task<Vehicle> GetByIdAsync(Guid id);
 
-    Task<Guid> CreateVehicleAsync(Vehicle vehicle);
+    Task<Guid> CreateAsync(Vehicle vehicle);
 
-    Task UpdateCarAsync(Vehicle vehicle);
+    Task UpdateAsync(Vehicle vehicle);
 
-    Task DeleteCarAsync(Guid id);
+    Task DeleteAsync(Guid id);
 }

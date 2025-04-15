@@ -2,16 +2,18 @@
 
 using Domain.Entities;
 using Domain.Enums;
+using Domain.Exceptions;
 using Domain.Interfaces;
 
 public class VehicleFactory : IVehicleFactory
 {
-    public Vehicle CreateVehicle(VehicleType type, string model, string manufacturer, int year, double startingBid, int numberOfDoors, int loadCapacity, int numberOfSeats)
+    public Vehicle Create(VehicleType type, string model, string manufacturer, int year, double startingBid, int numberOfDoors, int loadCapacity, int numberOfSeats)
     {
         return type switch
         {
             VehicleType.Hatchback => new Hatchback
             {
+                Id = Guid.NewGuid(),
                 Model = model,
                 Manufacturer = manufacturer,
                 Year = year,
@@ -21,6 +23,7 @@ public class VehicleFactory : IVehicleFactory
             },
             VehicleType.Sudan => new Sudan
             {
+                Id = Guid.NewGuid(),
                 Model = model,
                 Manufacturer = manufacturer,
                 Year = year,
@@ -30,6 +33,7 @@ public class VehicleFactory : IVehicleFactory
             },
             VehicleType.Truck => new Truck
             {
+                Id = Guid.NewGuid(),
                 Model = model,
                 Manufacturer = manufacturer,
                 Year = year,
@@ -39,6 +43,7 @@ public class VehicleFactory : IVehicleFactory
             },
             VehicleType.SUV => new Suv
             {
+                Id = Guid.NewGuid(),
                 Model = model,
                 Manufacturer = manufacturer,
                 Year = year,
@@ -46,7 +51,7 @@ public class VehicleFactory : IVehicleFactory
                 NumberOfSeats = numberOfSeats,
                 Type = type
             },
-            _ => throw new ArgumentException("Invalid vehicle type")
+            _ => throw new BusinessRuleException("Vehicle type not supported")
         };
     }
 }

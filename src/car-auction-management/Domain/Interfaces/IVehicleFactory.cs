@@ -5,7 +5,7 @@ using Domain.Enums;
 
 public interface IVehicleFactory
 {
-    Vehicle CreateVehicle(
+    Vehicle Create(
         VehicleType type,
         string model,
         string manufacturer,

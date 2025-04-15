@@ -1,18 +1,18 @@
 ﻿namespace Domain.Entities;
 
-public class Auction
-{
-    public Guid Id { get; set; }
+using Domain.Enums;
 
+public class Auction : Entity
+{
     public Guid VehicleId { get; set; }
 
     public DateTime StartDate { get; set; }
 
     public DateTime EndDate { get; set; }
 
-    public double StartingPrice { get; set; }
+    public double StartingBid { get; set; }
 
-    public double CurrentPrice { get; set; }
+    public double? CurrentBid { get; set; }
 
-    public bool IsActive { get; set; }
+    public AuctionStatus Status { get; set; }
 }

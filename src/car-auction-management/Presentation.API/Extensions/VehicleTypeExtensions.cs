@@ -1,4 +1,4 @@
-﻿namespace Presentation.API.Controllers.V1.Extensions;
+﻿namespace Presentation.API.Extensions;
 
 using System.ComponentModel;
 
