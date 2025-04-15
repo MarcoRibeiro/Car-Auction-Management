@@ -14,6 +14,7 @@ using Domain.Services;
 using MediatR;
 using Presentation.API.PipelineBehavior;
 using FluentValidation;
+using Presentation.API.Handlers;
 
 public class Program
 {
@@ -42,6 +43,8 @@ public class Program
 
         builder.Services.AddValidatorsFromAssembly(typeof(AddVehicleCommand).Assembly);
         builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+        builder.Services.AddExceptionHandler<BusinessRuleExceptionHandler>();
+        builder.Services.AddExceptionHandler<ValidationExceptionHandler>();
 
         var app = builder.Build();
 
@@ -51,6 +54,7 @@ public class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+        app.UseExceptionHandler("/error");
 
         app.UseHttpsRedirection();
 

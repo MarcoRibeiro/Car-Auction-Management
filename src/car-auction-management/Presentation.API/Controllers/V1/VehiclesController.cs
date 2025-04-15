@@ -78,9 +78,9 @@ public class VehiclesController(ISender sender, ILogger<VehiclesController> logg
     }
 
     [HttpPost("{id}/auctions/bid")]
-    public async Task<IActionResult> BidAsync([FromRoute] Guid id, [FromBody] double amount)
+    public async Task<IActionResult> BidAsync([FromRoute] Guid id, [FromBody] PlaceBidRequest placeBidRequest)
     {
-        await sender.Send(new PlaceBidCommand { VehicleId = id, Amount = amount });
+        await sender.Send(new PlaceBidCommand { VehicleId = id, Amount = placeBidRequest.Amount });
         return NoContent();
     }
 }

@@ -7,7 +7,6 @@ public class PlaceBidCommandValidator : AbstractValidator<PlaceBidCommand>
     public PlaceBidCommandValidator() 
     {
         RuleFor(x => x.VehicleId).NotEmpty();
-        RuleFor(x => x.UserId).NotEmpty();
         RuleFor(x => x.Amount).NotEmpty().GreaterThan(0);
     }
 }

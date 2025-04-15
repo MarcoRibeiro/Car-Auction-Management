@@ -1,5 +1,5 @@
 @car_auction_management_HostAddress = http://localhost:5065
-@vehicle_id = 55503503-cba2-49b7-8b2e-d1fb05b83584
+@vehicle_id = 6b43b17d-e889-4493-9aab-b9be12e5dd9e
 
 
 GET {{car_auction_management_HostAddress}}/v1/vehicles?manufacturer=BYD
@@ -20,4 +20,20 @@ Content-Type: application/json
     "loadCapacity": 5,
     "StartingPrice": 32000,
     "year": 2024
+}
+
+###
+POST {{car_auction_management_HostAddress}}/v1/vehicles/{{vehicle_id}}/auctions/start
+Content-Type: application/json
+
+###
+POST {{car_auction_management_HostAddress}}/v1/vehicles/{{vehicle_id}}/auctions/stop
+Content-Type: application/json
+
+###
+POST {{car_auction_management_HostAddress}}/v1/vehicles/{{vehicle_id}}/auctions/bid
+Content-Type: application/json
+
+{
+    "amount": 1234212
 }

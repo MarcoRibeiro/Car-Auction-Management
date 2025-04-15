@@ -1,6 +1,6 @@
 ﻿namespace Presentation.API.Controllers.V1.DTOs;
 
-public record VehicleResponse
+public record VehicleDto
 {
     public Guid Id { get; init; }
 
