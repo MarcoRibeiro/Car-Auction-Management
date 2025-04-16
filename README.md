@@ -8,7 +8,7 @@ This project is a **RESTful API** built with **ASP.NET Core**, designed to manag
 
 The diagram below illustrates the main architectural layers of the project and highlights the core components within each one — from domain entities and business logic to application handlers, infrastructure repositories, and presentation concerns.
 
-![Diagram](./assets/swagger.png)
+![Diagram](./assets/diagram.jpg)
 
 ---
 
