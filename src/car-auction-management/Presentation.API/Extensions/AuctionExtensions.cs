@@ -30,7 +30,7 @@ public static class AuctionExtensions
         };
     }
 
-    public static AuctionDto FromDomain(this Auction auction)
+    public static AuctionDto ToDto(this Auction auction)
     {
         return new AuctionDto
         {

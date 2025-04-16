@@ -10,13 +10,13 @@ public record VehicleDto
 
     public int Year { get; init; }
 
-    public double StartingPrice { get; init; }
+    public double StartingBid { get; init; }
 
-    public int NumberOfDoors { get; init; }
+    public int? NumberOfDoors { get; init; }
 
-    public int LoadCapacity { get; init; }
+    public int? LoadCapacity { get; init; }
 
-    public int NumberOfSeats { get; init; }
+    public int? NumberOfSeats { get; init; }
 
     public VehicleType Type { get; init; }
 }

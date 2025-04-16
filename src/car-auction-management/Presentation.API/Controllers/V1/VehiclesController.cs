@@ -23,14 +23,14 @@ public class VehiclesController(ISender sender, ILogger<VehiclesController> logg
     : BaseController(logger)
 {
     [HttpGet("{id}")]
-    public async Task<ActionResult<Vehicle>> GetAsync([FromRoute] Guid id)
+    public async Task<ActionResult<VehicleDto>> GetAsync([FromRoute] Guid id)
     {
         var vehicle = await sender.Send(new GetVehicleQuery { Id = id });
-        return vehicle is null ? NotFound() : vehicle;
+        return vehicle is null ? NotFound() : vehicle.ToDto();
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Vehicle>>> GetAllAsync(
+    public async Task<ActionResult<IEnumerable<VehicleDto>>> GetAllAsync(
         [FromQuery] string Model,
         [FromQuery] string Manufacturer,
         [FromQuery] int? Year,
@@ -44,7 +44,8 @@ public class VehiclesController(ISender sender, ILogger<VehiclesController> logg
             Type = type.HasValue ? type.Value.ToDomain() : null
         };
 
-        return Ok(await sender.Send(query));
+        var vehicles = await sender.Send(query);
+        return Ok(vehicles.Select(v => v.ToDto()));
     }
 
     [HttpPost]
@@ -74,7 +75,7 @@ public class VehiclesController(ISender sender, ILogger<VehiclesController> logg
             Status = status.HasValue ? status.Value.ToDomain() : null
         };
         var result = await sender.Send(query);
-        return Ok(result.Select(a => a.FromDomain()));
+        return Ok(result.Select(a => a.ToDto()));
     }
 
     [HttpPost("{id}/auctions/start")]

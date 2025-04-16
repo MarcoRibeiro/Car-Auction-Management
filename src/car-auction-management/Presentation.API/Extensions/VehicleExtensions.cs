@@ -2,9 +2,11 @@
 
 using System.ComponentModel;
 
+using Domain.Entities;
+
 using Presentation.API.Controllers.V1.DTOs;
 
-public static class VehicleTypeExtensions
+public static class VehicleExtensions
 {
     public static Domain.Enums.VehicleType ToDomain(this VehicleType type)
     {
@@ -29,6 +31,32 @@ public static class VehicleTypeExtensions
             Domain.Enums.VehicleType.Sudan => VehicleType.Sudan,
             _ => throw new InvalidEnumArgumentException(
                 $"Invalid vehicle type: {type}. Valid values are: {string.Join(", ", Enum.GetNames(typeof(VehicleType)))}")
+        };
+    }
+
+    public static VehicleDto ToDto(this Vehicle vehicle)
+    {
+        return new VehicleDto
+        {
+            Id = vehicle.Id,
+            Type = vehicle.Type.FromDomain(),
+            Manufacturer = vehicle.Manufacturer,
+            Model = vehicle.Model,
+            Year = vehicle.Year,
+            StartingBid = vehicle.StartingBid,
+            NumberOfDoors = vehicle.GetNumberOfDoors(),
+            NumberOfSeats = vehicle is Suv suv ? suv.NumberOfSeats : null,
+            LoadCapacity = vehicle is Truck truck ? truck.LoadCapacity : null,
+        };
+    }
+
+    private static int? GetNumberOfDoors(this Vehicle vehicle)
+    {
+        return vehicle switch
+        {
+            Hatchback hatchback => hatchback.NumberOfDoors,
+            Sudan sudan => sudan.NumberOfDoors,
+            _ => null
         };
     }
 }

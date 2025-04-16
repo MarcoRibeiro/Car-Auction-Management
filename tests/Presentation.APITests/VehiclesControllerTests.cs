@@ -47,6 +47,7 @@ public class VehiclesControllerTests
         // Assert
         await _sender.Received(1).Send(Arg.Is<GetVehicleQuery>(q => q.Id == id));
         result.Value.Should().BeEquivalentTo(vehicle);
+        result.Value.Should().BeOfType<VehicleDto>();
     }
 
     [Fact]
