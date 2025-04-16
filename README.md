@@ -14,7 +14,7 @@ The diagram below illustrates the main architectural layers of the project and h
 
 ## 🧱 Architecture & Technologies
 
-- **ASP.NET Core Web API** with versioned controllers (e.g., `V1`)
+- **.NET Core Web API** with versioned controllers (e.g., `V1`)
 - **MediatR** for CQRS-style separation between controllers and business logic
 - **FluentValidation** for expressive, rule-based command validation
 - **Custom domain exceptions** to clearly represent business rule violations
