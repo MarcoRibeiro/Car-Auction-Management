@@ -1,8 +1,8 @@
 @car_auction_management_HostAddress = http://localhost:5065
-@vehicle_id = c8b737ea-8c7a-45a9-a411-f19dd1256177
+@vehicle_id = 796d5c98-d4cc-4b7a-b890-3726c54caeac
 
 
-GET {{car_auction_management_HostAddress}}/v1/vehicles?manufacturer=BYD
+GET {{car_auction_management_HostAddress}}/v1/vehicles?manufacturer=Tesla
 Accept: application/json
 
 ###
