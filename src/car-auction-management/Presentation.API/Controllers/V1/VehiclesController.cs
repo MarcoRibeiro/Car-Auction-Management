@@ -8,8 +8,6 @@ using Application.Queries.GetVehicle;
 using Application.Queries.SearchAuctions;
 using Application.Queries.SearchVehicles;
 
-using Domain.Entities;
-
 using MediatR;
 
 using Microsoft.AspNetCore.Mvc;
