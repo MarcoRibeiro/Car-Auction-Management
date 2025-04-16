@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 using Domain.Entities;
 
-public class MemoryRepository<T> 
+public abstract class MemoryRepository<T> 
     where T : Entity
 {
     private readonly ConcurrentDictionary<Guid, T> _data = new();

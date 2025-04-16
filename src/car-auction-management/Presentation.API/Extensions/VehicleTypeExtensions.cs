@@ -18,4 +18,17 @@ public static class VehicleTypeExtensions
                 $"Invalid vehicle type: {type}. Valid values are: {string.Join(", ", Enum.GetNames(typeof(VehicleType)))}")
         };
     }
+
+    public static VehicleType FromDomain(this Domain.Enums.VehicleType type)
+    {
+        return type switch
+        {
+            Domain.Enums.VehicleType.Truck => VehicleType.Truck,
+            Domain.Enums.VehicleType.Hatchback => VehicleType.Hatchback,
+            Domain.Enums.VehicleType.SUV => VehicleType.SUV,
+            Domain.Enums.VehicleType.Sudan => VehicleType.Sudan,
+            _ => throw new InvalidEnumArgumentException(
+                $"Invalid vehicle type: {type}. Valid values are: {string.Join(", ", Enum.GetNames(typeof(VehicleType)))}")
+        };
+    }
 }

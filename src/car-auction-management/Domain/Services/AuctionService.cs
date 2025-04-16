@@ -10,24 +10,18 @@ using Domain.Enums;
 
 public class AuctionService(IVehicleRepository vehicleRepository, IAuctionRepository auctionRepository) : IAuctionService
 {
-    private readonly string auctionAlreadyExistsMessage = "Already exists an active auction for this vehicle";
-    private readonly string notActiveAuctionMessage = "There is not active auction for the given vehicle";
-    private readonly string vehicleNotExistsMessage = "Vehicle doesn't exists in the inventory";
-    private readonly string valueBellowStartingBidMessage = "Bib amount is bellow the starting bid amount";
-    private readonly string valueBellowCurrentHighestBidMessage = "Bid amount must be greater than the current highest bid";
-
     public async Task<Guid> StartAuctionAsync(Guid vehicleId)
     {
         var vehicle = await vehicleRepository.GetByIdAsync(vehicleId);
         if (vehicle == null)
         {
-            throw new BusinessRuleException(vehicleNotExistsMessage);
+            throw new VehicleNotExistsException();
         }
 
         IEnumerable<Auction> allActiveAuctions = await GetActiveAuctionsAsync(vehicleId);
         if (allActiveAuctions.Any())
         {
-            throw new BusinessRuleException(auctionAlreadyExistsMessage);
+            throw new AuctionAlreadyExistsException();
         }
 
         var auction = new Auction
@@ -46,19 +40,19 @@ public class AuctionService(IVehicleRepository vehicleRepository, IAuctionReposi
         var allActiveAuctions = await GetActiveAuctionsAsync(vehicleId);
         if (!allActiveAuctions.Any())
         {
-            throw new BusinessRuleException(notActiveAuctionMessage);
+            throw new NotActiveAuctionException();
         }
 
         var auction = allActiveAuctions.First();
 
         if (value <= auction.StartingBid)
         {
-            throw new BusinessRuleException(valueBellowStartingBidMessage);
+            throw new BidBellowStartingBidException();
         }
 
         if (auction.CurrentBid.HasValue && value <= auction.CurrentBid.Value)
         {
-            throw new BusinessRuleException(valueBellowCurrentHighestBidMessage);
+            throw new BidBellowCurrentHighestBidException();
         }
 
         auction.CurrentBid = value;
@@ -72,17 +66,12 @@ public class AuctionService(IVehicleRepository vehicleRepository, IAuctionReposi
 
         if (auction == null) 
         {
-            throw new BusinessRuleException(notActiveAuctionMessage);
+            throw new NotActiveAuctionException();
         }
 
-        if (auction.CurrentBid.HasValue && auction.CurrentBid.Value >= auction.StartingBid)
-        {
-            auction.Status = AuctionStatus.Sold;
-            await auctionRepository.UpdateAsync(auction);
-            return;
-        }
-
+        auction.EndDate = DateTime.UtcNow;
         auction.Status = AuctionStatus.Inactive;
+        
         await auctionRepository.UpdateAsync(auction);
     }
 

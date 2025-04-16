@@ -5,6 +5,7 @@ using Application.Commands.PlaceBid;
 using Application.Commands.StartAuction;
 using Application.Commands.StopAuction;
 using Application.Queries.GetVehicle;
+using Application.Queries.SearchAuctions;
 using Application.Queries.SearchVehicles;
 
 using Domain.Entities;
@@ -62,6 +63,18 @@ public class VehiclesController(ISender sender, ILogger<VehiclesController> logg
         };
 
         return await sender.Send(command);
+    }
+
+    [HttpGet("{id}/auctions")]
+    public async Task<ActionResult<IEnumerable<Auction>>> GetAllVehicleAuctionsAsync([FromRoute] Guid id, [FromQuery] AuctionStatus? status)
+    {
+        var query = new SearchAuctionsQuery
+        {
+            VehicleId = id,
+            Status = status.HasValue ? status.Value.ToDomain() : null
+        };
+
+        return Ok(await sender.Send(query));
     }
 
     [HttpPost("{id}/auctions/start")]

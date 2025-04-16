@@ -10,9 +10,9 @@ public interface IAuctionRepository
 
     Task<Auction> GetByIdAsync(Guid id);
 
-    Task<Guid> CreateAsync(Auction vehicle);
+    Task<Guid> CreateAsync(Auction auction);
 
-    Task UpdateAsync(Auction vehicle);
+    Task UpdateAsync(Auction auction);
 
     Task DeleteAsync(Guid id);
 }
