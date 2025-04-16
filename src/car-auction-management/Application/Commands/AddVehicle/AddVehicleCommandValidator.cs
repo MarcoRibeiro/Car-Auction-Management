@@ -12,7 +12,7 @@ public class AddVehicleCommandValidator : AbstractValidator<AddVehicleCommand>
         RuleFor(x => x.Manufacturer).NotEmpty();
         RuleFor(x => x.Year).NotEmpty().InclusiveBetween(1900, DateTime.Now.Year);
         RuleFor(x => x.Type).IsInEnum();
-        RuleFor(x => x.Startingid).NotEmpty().GreaterThan(0);
+        RuleFor(x => x.StartingBid).NotEmpty().GreaterThan(0);
         RuleFor(x => x.NumberOfDoors)
             .NotEmpty().InclusiveBetween(3, 5).When(x => x.Type == VehicleType.Sudan || x.Type == VehicleType.Hatchback);
         RuleFor(x => x.NumberOfDoors).Empty().When(x => x.Type != VehicleType.Sudan && x.Type != VehicleType.Hatchback);

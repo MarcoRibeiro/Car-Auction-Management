@@ -11,7 +11,7 @@ public record AddVehicleCommand : IRequest<Guid>
 
     public int Year { get; init; }
 
-    public double Startingid { get; init; }
+    public double StartingBid { get; init; }
 
     public VehicleType Type { get; init; }
 

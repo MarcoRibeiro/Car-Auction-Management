@@ -20,6 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\car-auction-management\Application\Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
 	<Using Include="Xunit" />
   </ItemGroup>
 

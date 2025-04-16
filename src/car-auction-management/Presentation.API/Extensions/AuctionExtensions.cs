@@ -2,9 +2,11 @@
 
 using System.ComponentModel;
 
+using Domain.Entities;
+
 using Presentation.API.Controllers.V1.DTOs;
 
-public static class AuctionStatusExtensions
+public static class AuctionExtensions
 {
     public static Domain.Enums.AuctionStatus ToDomain(this AuctionStatus status)
     {
@@ -25,6 +27,19 @@ public static class AuctionStatusExtensions
             Domain.Enums.AuctionStatus.Active => AuctionStatus.Active,
             _ => throw new InvalidEnumArgumentException(
                 $"Invalid Auction Status: {status}. Valid values are: {string.Join(", ", Enum.GetNames(typeof(AuctionStatus)))}")
+        };
+    }
+
+    public static AuctionDto FromDomain(this Auction auction)
+    {
+        return new AuctionDto
+        {
+            Id = auction.Id,
+            VehicleId = auction.VehicleId,
+            StartingBid = auction.StartingBid,
+            Status = auction.Status.FromDomain(),
+            EndDate = auction.EndDate,
+            StartDate = auction.StartDate
         };
     }
 }

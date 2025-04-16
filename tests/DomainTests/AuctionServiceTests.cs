@@ -137,6 +137,7 @@ public class AuctionServiceTests
         var auction = _fixture.Build<Auction>()
             .With(a => a.StartingBid, 1000)
             .With(a => a.CurrentBid, 1300)
+            .With(a => a.VehicleId, vehicleId)
             .Create();
 
         _auctionRepository.GetAllAsync(Arg.Any<Expression<Func<Auction, bool>>>())
@@ -170,7 +171,7 @@ public class AuctionServiceTests
     {
         // Arrange
         var vehicleId = Guid.NewGuid();
-        var auction = _fixture.Build<Auction>().Create();
+        var auction = _fixture.Build<Auction>().With(a => a.VehicleId, vehicleId).Create();
 
         _auctionRepository.GetAllAsync(Arg.Any<Expression<Func<Auction, bool>>>())
             .Returns([auction]);

@@ -55,7 +55,7 @@ public class VehiclesController(ISender sender, ILogger<VehiclesController> logg
             Model = request.Model,
             Manufacturer = request.Manufacturer,
             Year = request.Year,
-            Startingid = request.StartingPrice,
+            StartingBid = request.StartingPrice,
             Type = request.Type.ToDomain(),
             LoadCapacity = request.LoadCapacity,
             NumberOfDoors = request.NumberOfDoors,
@@ -66,15 +66,15 @@ public class VehiclesController(ISender sender, ILogger<VehiclesController> logg
     }
 
     [HttpGet("{id}/auctions")]
-    public async Task<ActionResult<IEnumerable<Auction>>> GetAllVehicleAuctionsAsync([FromRoute] Guid id, [FromQuery] AuctionStatus? status)
+    public async Task<ActionResult<IEnumerable<AuctionDto>>> GetAllVehicleAuctionsAsync([FromRoute] Guid id, [FromQuery] AuctionStatus? status)
     {
         var query = new SearchAuctionsQuery
         {
             VehicleId = id,
             Status = status.HasValue ? status.Value.ToDomain() : null
         };
-
-        return Ok(await sender.Send(query));
+        var result = await sender.Send(query);
+        return Ok(result.Select(a => a.FromDomain()));
     }
 
     [HttpPost("{id}/auctions/start")]

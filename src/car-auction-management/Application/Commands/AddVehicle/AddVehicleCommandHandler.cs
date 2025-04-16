@@ -14,7 +14,7 @@ public class AddVehicleCommandHandler(IVehicleRepository vehicleRepository, IVeh
             request.Model,
             request.Manufacturer,
             request.Year,
-            request.Startingid,
+            request.StartingBid,
             request.NumberOfDoors,
             request.LoadCapacity,
             request.NumberOfSeats);
