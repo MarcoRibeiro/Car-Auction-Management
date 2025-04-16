@@ -88,13 +88,13 @@ public class VehiclesController(ISender sender, ILogger<VehiclesController> logg
     public async Task<IActionResult> StopAsync([FromRoute] Guid id)
     {
         await sender.Send(new StopAuctionCommand { VehicleId = id });
-        return NoContent();
+        return Accepted();
     }
 
     [HttpPost("{id}/auctions/bid")]
     public async Task<IActionResult> BidAsync([FromRoute] Guid id, [FromBody] PlaceBidRequest placeBidRequest)
     {
         await sender.Send(new PlaceBidCommand { VehicleId = id, Amount = placeBidRequest.Amount });
-        return NoContent();
+        return Accepted();
     }
 }

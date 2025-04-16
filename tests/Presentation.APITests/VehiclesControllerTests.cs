@@ -160,7 +160,7 @@ public class VehiclesControllerTests
 
         // Assert
         await _sender.Received(1).Send(Arg.Is<StopAuctionCommand>(cmd => cmd.VehicleId == id));
-        result.Should().BeOfType<NoContentResult>();
+        result.Should().BeOfType<AcceptedResult>();
     }
 
     [Fact]
@@ -178,6 +178,6 @@ public class VehiclesControllerTests
             cmd.VehicleId == id && cmd.Amount == request.Amount
         ));
 
-        result.Should().BeOfType<NoContentResult>();
+        result.Should().BeOfType<AcceptedResult>();
     }
 }
