@@ -2,7 +2,7 @@
 
 This project is a **RESTful API** built with **ASP.NET Core**, designed to manage vehicles and their associated auctions. It follows **Clean Architecture principles**, with clear separation of concerns and a strong focus on maintainability and testability.
 
-![Swagger](./assets/screenshot.png)
+![Swagger](./assets/swagger.png)
 
 ---
 
